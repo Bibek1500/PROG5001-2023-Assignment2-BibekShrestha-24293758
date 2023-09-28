@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 
 /**
@@ -17,6 +19,7 @@ public class Main
     public static void main(String[] args){
         Tasks tsk = new Tasks();
         tsk.readingFile();
+        tsk.filterStudent();
     }   
 }
 
@@ -73,6 +76,21 @@ class Tasks{
 
 		} catch (IOException e){
 			e.printStackTrace();
+		}
+	}
+	
+	// listing the student's detail below threshold
+	public static void filterStudent() {
+		double marks;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter threshold marks: ");
+		marks = sc.nextDouble();
+		
+		for(int i = 0; i < a1.size(); i++) {
+			if(total.get(i) < marks) {
+
+				System.out.println(firstName.get(i)+ "\t" + lastName.get(i) + "\t" +total.get(i));
+			}
 		}
 	}
 }
