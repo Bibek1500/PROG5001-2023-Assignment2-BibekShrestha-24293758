@@ -18,10 +18,31 @@ public class Main
 {
     public static void main(String[] args){
         Tasks tsk = new Tasks();
-        tsk.readingFile();
-        //tsk.filterStudent();
-        //tsk.topHighestStudents();
-        tsk.topLowestStudents();
+		Scanner sc = new Scanner(System.in);
+		int num;
+
+		System.out.println("Please select a number: ");
+		System.out.println("1) Display Student's Detail with total Marks");
+		System.out.println("2) Display the list of students with total marks less than a given threshold.");
+		System.out.println("3) Display top 5 students with the highest total marks");
+		System.out.println("4) Display top 5 students with the lowest total marks");
+		System.out.println();
+
+		num = sc.nextInt();
+
+		// creating the menu
+		if (num == 1) {
+			tsk.readingFile(true);
+		} else if (num == 2) {
+			tsk.readingFile(false);
+			tsk.filterStudent();
+		} else if (num == 3) {
+			tsk.readingFile(false);
+			tsk.topHighestStudents();
+		} else if (num == 4) {
+			tsk.readingFile(false);
+			tsk.topLowestStudents();
+		}
     }   
 }
 
@@ -57,7 +78,7 @@ class Tasks{
 	}  
     
         // reads the csv file and calculated the total of the students
-	public static void readingFile() {
+	public static void readingFile(boolean flag) {
 		try {
 		BufferedReader reader = new BufferedReader(new FileReader(csvPath));
 		String line;
@@ -69,19 +90,20 @@ class Tasks{
                     a1.add(data[3]);          
                     a2.add(data[4]);          
                     a3.add(data[5]); 
-
-           		
-           			System.out.println(Arrays.toString(data));
-           			System.out.println();
-           		
-
+                    if(flag == true) {
+       			System.out.println(Arrays.toString(data));
+       			System.out.println();
+           		}
                 }   
 
                 for( int i = 0; i<a1.size(); i++) {
                 		total.add(parseValue(a1.get(i), a2.get(i), a3.get(i))); 
                 	}
                 
-                System.out.println("Total: " + total);
+                if(flag == true) {
+                	System.out.println("Total: " + total);
+                }
+               
                 
         
                 reader.close(); 
