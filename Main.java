@@ -20,7 +20,8 @@ public class Main
         Tasks tsk = new Tasks();
         tsk.readingFile();
         //tsk.filterStudent();
-        tsk.topHighestStudents();
+        //tsk.topHighestStudents();
+        tsk.topLowestStudents();
     }   
 }
 
@@ -40,6 +41,11 @@ class Tasks{
 	static ArrayList<String> hLastName = new ArrayList<>();
 	static ArrayList<String> hFirstName = new ArrayList<>();
 	static ArrayList<Double> hMarks = new ArrayList<>();
+	
+	//top Lowest students variable
+	static ArrayList<String> lLastName = new ArrayList<>();
+	static ArrayList<String> lFirstName = new ArrayList<>();
+	static ArrayList<Double> lMarks = new ArrayList<>();
 	
 	// parse the string value to double and returns the sum
 	public static double parseValue(String num1, String num2, String num3) {
@@ -126,10 +132,43 @@ class Tasks{
 				hLastName.add(last);
 			}
 		}
+        		System.out.println("Top five students with highest marks");
 
 		for(int i = 0; i < hMarks.size(); i++) {
 				System.out.println(hFirstName.get(i)+ "\t" + hLastName.get(i) + "\t" + hMarks.get(i));
 			}
+	}
+	
+	
+	// displaying the top 5 students with lowest marks
+	public static void topLowestStudents() {
+		for(int i =0; i<5; i++) {
+			double min = Double.MAX_VALUE;
+			String last = "";
+			String first = "";
+			int minIndex = -1;
+
+			for(int j = 0; j < total.size(); j++) {
+				if(!lMarks.contains(total.get(j)) && total.get(j) < min
+					&& !hFirstName.contains(firstName.get(j)) && 
+					!hLastName.contains(lastName.get(j))) {
+						min = total.get(j);
+						last = firstName.get(j);
+						first = lastName.get(j);
+						minIndex = j;
+					}
+			}
+			if(minIndex != -1) {
+				lMarks.add(min);
+				lFirstName.add(first);
+				lLastName.add(last);
+			}
+		}
+		
+		System.out.println("Top five students with lowest marks");
+		for(int i = 0; i < lMarks.size(); i++) {
+			System.out.println(lFirstName.get(i)+ "\t" + lLastName.get(i) + "\t" +lMarks.get(i));
+		}
 	}
 	
 	
