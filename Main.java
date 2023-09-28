@@ -19,7 +19,8 @@ public class Main
     public static void main(String[] args){
         Tasks tsk = new Tasks();
         tsk.readingFile();
-        tsk.filterStudent();
+        //tsk.filterStudent();
+        tsk.topHighestStudents();
     }   
 }
 
@@ -34,6 +35,11 @@ class Tasks{
 	static ArrayList<String> a1 = new ArrayList<>();
 	static ArrayList<String> a2 = new ArrayList<>();
 	static ArrayList<String> a3 = new ArrayList<>();
+	
+	//top highest students variable
+	static ArrayList<String> hLastName = new ArrayList<>();
+	static ArrayList<String> hFirstName = new ArrayList<>();
+	static ArrayList<Double> hMarks = new ArrayList<>();
 	
 	// parse the string value to double and returns the sum
 	public static double parseValue(String num1, String num2, String num3) {
@@ -93,4 +99,38 @@ class Tasks{
 			}
 		}
 	}
+	
+	// displaying the top 5 students with highest marks
+	public static void topHighestStudents() {
+		for(int i =0; i<5; i++) {
+			double max = Double.MIN_VALUE;
+			String last = "";
+			String first = "";
+			int maxIndex = -1;
+
+			for(int j = 0; j < total.size(); j++) {
+				if(!hMarks.contains(total.get(j)) && total.get(j) > max
+					&& !hFirstName.contains(firstName.get(j)) && 
+					!hLastName.contains(lastName.get(j))
+				) {
+					max = total.get(j);
+					last = firstName.get(j);
+					first = lastName.get(j);
+					maxIndex = j;
+				}
+			}
+
+			if(maxIndex != -1) {
+				hMarks.add(max);
+				hFirstName.add(first);
+				hLastName.add(last);
+			}
+		}
+
+		for(int i = 0; i < hMarks.size(); i++) {
+				System.out.println(hFirstName.get(i)+ "\t" + hLastName.get(i) + "\t" + hMarks.get(i));
+			}
+	}
+	
+	
 }
