@@ -36,8 +36,13 @@ public class Main
                     printStudentTotal(students);
                 }
                 
+                // list of students with total marks less than threshold
                 if(userEntry == 2) {
-                
+                    double threshold;
+                    System.out.println("Please enter the threshold: ");
+                    threshold = scanner.nextDouble();
+                    System.out.println("List of students with total marks less than " + threshold + ": ");
+                    printStudentTotalLessThanThreshold(students, threshold);
                 }
                 
                 if(userEntry == 3) {
@@ -78,6 +83,21 @@ public class Main
                        ", a3: " + student.geta3() +
                        ", total: " + student.calculateTotal());
             }
+         System.out.println();   
+    }
+    
+    public static void printStudentTotalLessThanThreshold(ArrayList<Student> students, double threshold) {
+        for (Student student : students) {
+                if(student.calculateTotal() < threshold) {
+                    System.out.println("firstName: " + student.getfirstName() +
+                       ", lastName: " + student.getlastName() +
+                       ", studentId: " + student.getstudentId() +
+                       ", a1: " + student.geta1() +
+                       ", a2: " + student.geta2() +
+                       ", a3: " + student.geta3() +
+                       ", total: " + student.calculateTotal());
+                }
+        }
          System.out.println();   
     }
 }
