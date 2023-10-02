@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=StudentReader
+comment0.text=\r\n\ StudentReader\ class.\r\n\r\n\ @author\ (Bibek\ Shrestha)\r\n\ @version\ (02/10/2023)\r\n
+comment1.params=fileName
+comment1.target=java.util.ArrayList\ readCSV(java.lang.String)
+comment2.params=input
+comment2.target=double\ parseValueForAssignment(java.lang.String)
+numComments=3
